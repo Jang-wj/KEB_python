@@ -1,3 +1,14 @@
-harry_porter = {'헤르미온느':'그리핀도르', '말포이':'슬리데린'}
-print(harry_porter)
-print(type(harry_porter))
+# Chapter 3
+print(2*2*2*2*2)
+print(2**5)
+print(pow(2, 5))
+
+print(divmod(9, 5))
+print(type(divmod(9, 5)))
+print(type((9, 5)))
+test = (1, 2)  # packing
+print(type(test))
+a, b = test  # unpacking
+print(a)
+print(b)
+
