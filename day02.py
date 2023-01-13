@@ -1,17 +1,25 @@
-# Chapter 3
+# Chapter 4
 
-number = 0b10011010
-number = 0o232
-number = 0x9A
-print(number)
+a = []
+print(bool(a))
+a.append(5)
+print(bool(a))
+print(bool(set()))
+print(bool(dict()))
+print(bool(''))
+print(bool('aaa'))
 
-number = 154
-print(bin(number))
-print(oct(number))
-print(hex(number))
+letter = 'o'
+vowels = 'aeiou'
+if letter in vowels:
+    print('실행')
 
-print(chr(65))
-print(ord('A'))
-print(ord(' '))
-print(hex(ord('A')))
+limits = 20
+tweets = 'home' * 6
+diff = limits - len(tweets)
+# if diff := limits - len(tweets) >= 0 :
+if diff >= 0 :
+    print(tweets)
+else:
+    print(f'제한 글자 수 {abs(diff)}초과')
 
