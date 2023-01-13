@@ -1,11 +1,12 @@
 import random
 
-limits = 20
-tweets = 'home' * random.randint(1, 10)
-diff = limits - len(tweets)
-# if diff := limits - len(tweets) >= 0 :
-if diff >= 0 :
-    print(tweets)
-else:
-    print(f'제한 글자 수 {abs(diff)}초과')
-
+secret = random.randint(1, 10)
+while True:
+    guess = int(input())
+    if secret > guess :
+        print('too low')
+    elif secret < guess :
+        print('too high')
+    elif secret == guess:
+        print('just right')
+        break
