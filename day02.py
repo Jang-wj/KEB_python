@@ -1,14 +1,17 @@
 # Chapter 3
-print(2*2*2*2*2)
-print(2**5)
-print(pow(2, 5))
 
-print(divmod(9, 5))
-print(type(divmod(9, 5)))
-print(type((9, 5)))
-test = (1, 2)  # packing
-print(type(test))
-a, b = test  # unpacking
-print(a)
-print(b)
+number = 0b10011010
+number = 0o232
+number = 0x9A
+print(number)
+
+number = 154
+print(bin(number))
+print(oct(number))
+print(hex(number))
+
+print(chr(65))
+print(ord('A'))
+print(ord(' '))
+print(hex(ord('A')))
 
