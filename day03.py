@@ -1,12 +1,23 @@
-# while
-while True:
-    dan = int(input('Dan? (0 to quit)'))
-    if dan == 0:
-        break
-    if 1 < dan < 10:
-        for i in range(1, 10):
-            print(f'{dan} * {i} = {dan * i}')
-            i = i + 1
-    else:
-        print('2~9 사이 숫자 입력')
+# prime number
 
+number = int(input('number :'))
+counts = 0
+# k =1
+# while k <= number:
+#     if number % k == 0:
+#         counts += 1
+#     k += 1
+#
+# if counts == 2:
+#     print(f'{number} is prime number')
+# else:
+#     print(f'{number} is not prime number')
+
+for i in range(1, number + 1):
+    if number % i == 0:
+        counts += 1
+
+if counts == 2:
+    print(f'{number} is prime number')
+else:
+    print(f'{number} is not prime number')
