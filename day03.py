@@ -1,13 +1,14 @@
 # prime number
 
 number = int(input('number :'))
-counts = 0
+is_prime = True
 
 for i in range(2, number):
     if number % i == 0:
-        counts += 1
+        is_prime = False
 
-if counts:
-    print(f'{number} is not prime number')
-else:
+if is_prime:
     print(f'{number} is prime number')
+else:
+    print(f'{number} is not prime number')
+
