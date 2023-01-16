@@ -1,14 +1,38 @@
-print("I'm a boy")
+univ = 'Inha University'
 
-army = '우리는 국가와 국민에 충성을 다하는 대한민국 육군이다. \t하나 우리는 자유민주주의를 수호하며 조국통일의 역군이 된다.'
+print(univ[5:])
+print(univ[5:15])  # end-1
+print(univ[-10:])
+print(univ[::2])
+print(univ[5:-6])
+print(univ[-10:-6])
 
-print(army)
+print(len(univ))
+print(univ.split())  # delimiter
 
-start = 'Na' * 4 + '\n'
-middle = 'Hey' * 3 + '\n'
-end ='Good bye.'
+pokemons_list = ['피카츄', '꼬부기', '파이리', '이상해']
+pokemons_string = ' / '.join(pokemons_list)
+print(pokemons_string)
 
-print(start+start+middle+end)
+inha = 'a duck goes into a bar'
+print(inha.replace('a ', 'a nice '))
 
-# literal 소스로만 쓰임, 문자열은 불변, 원본은 못바꿈 replace 함수나 slice 이용
+subject = ' $ python, data structure, database $$$'
+print(subject.strip('$'))
+
+print(subject.find('data'), subject.index('data'))
+print(subject.find('inha'))  # -1 return
+# print(subject.index('inha'))   # exception
+print(subject.rfind('data'), subject.rindex('data'))
+print(subject.count('data'))
+
+# 5-1 연습문제
+song = '''When an eel grabs your arm, And it causes great harm, That's a moray'''
+song_list = song.split()
+if 'moray' in song_list:
+    song_list[-1] = song_list[-1].title()
+    song_string = ' '.join(song_list)
+    print(song_string)
+
+
 
