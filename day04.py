@@ -1,152 +1,71 @@
-# git reset 커밋 취소, git restore
-
-# tuple
-# a = 'harry',
-# b = ('hatty',)
-# c = ()  # empty tuple
-# d = 'harry', 'ron'  # packing
-# e = ('hermione')  # string
-# f = ('harry', 'ron')  # packing
-# g = ('hermione',)
-# print(g+f)
-# print(g, id(g))
-# g = g+f
-# print(g, id(g))
-# print(g)
-# print(f[1])
-# x, y = f  # unpacking
-# print(y)
-
-# print(type(a))
-# print(type(b))
-# print(type(c))
-# print(type(d))
-# print(type(e))
-# print(type(f))
-
-# t1 = ('fee', 'fie', 'foe')
-# t2 = ('flop',)
-# t1 += t2
-# print(t1)
-
-
-
-# list
-
-# scores = ('A+', 'B+', 'C+')
-# print(scores[1])
-# # scores[1] = 'C+'
-# # scores[2] = 'A+'
+# # Dictionary and Set
 #
-# # tuple to list, list to tuple 변경 가능
-#
-# temp = list(scores)
-# temp[1] = 'C+'
-# temp[2] = 'A+'
-# scores = tuple(temp)
-# print(scores)
-
-# solid 5원칙?
-
-# bigbang = ['GD', '태양', '탑', '대성', '승리']
-# exo = ['백현', '첸']
-# # bigbang.append('inha')
-# # bigbang.insert(1, 'inha')
-# # print(bigbang)
-# # exo.extend(bigbang)
-# # exo = exo + bigbang
-# # print(exo)
-#
-# exo.append(bigbang)
-# print(exo)
-# print(exo[2][2])
-# print(exo[-1][-3])
-# exo[-2] = '시우민'
-# # print(exo.pop())  # 빅뱅 pop
-# print(exo[2].pop())  # 승리 pop
-# print(exo)
-# print(exo[2].pop(-2))  # 탑 pop
-# print(exo)
-# del exo[2][-1]  # 대성 delete
-# print(exo)
-#
-# exo[2].remove('GD')
-# print(exo)
-# exo.clear()
-# print(exo)
+# students = {'name': 'kim inha', 'age': 23, 'eyes': [0.9, 1.1]}
+# # for k in students: = for k in students.keys():
+# # for k in students.values():
+# for k, v in students.items():
+#     print(f'{k} : {v}')
+# print(f'이름은 {students["name"]}, 나이는 {students["age"]}세', end=' ')
+# print(f'시력은 좌: {students["eyes"][0]}, 우: {students["eyes"][1]}')
 
 
+# alcohol_foods = {
+#     '맥주': '치킨', '소주': '골뱅이 소면', '위스키': '치즈', '고량주': '짬뽕'
+# }
+# alcohol_list = list(alcohol_foods)  # 키 값만 추출
+# while True:
+#     alcohol = input(f'술을 선택하세요 1. {alcohol_list[0]} 2. {alcohol_list[1]} 3. {alcohol_list[2]} 4. {alcohol_list[3]} 5. 계산:')
+#     if alcohol == '5':
+#         print('다음에 또 오세요!')
+#         break
+#     elif alcohol == '1':
+#         print(f'{alcohol_list[0]}에 어울리는 안주는 {alcohol_foods[alcohol_list[0]]}입니다.')
+#     elif alcohol == '2':
+#         print(f'{alcohol_list[1]}에 어울리는 안주는 {alcohol_foods[alcohol_list[1]]}입니다.')
+#     elif alcohol == '3':
+#         print(f'{alcohol_list[2]}에 어울리는 안주는 {alcohol_foods[alcohol_list[2]]}입니다.')
+#     elif alcohol == '4':
+#         print(f'{alcohol_list[3]}에 어울리는 안주는 {alcohol_foods[alcohol_list[3]]}입니다.')
+#     else:
+#         print('메뉴에서 골라주세요')
 
-# list sort
-# primes = [2, 19, 3.0, 5, 7, 11]
-# primes_sorted = sorted(primes)
-# print(primes)
-# print(primes_sorted)
-
-# primes.sort()
-# print(primes)
-
-# mixed = [6, 4, 5, 'A', 7, '트와이스', 'B', 'b', '마마무']
-# mixed.sort()  #error TypeError: '<' not supported between instances of 'str' and 'int'
-# mixed = ['6', '4', '5', 'A', '7', '트와이스', 'B', 'b', '마마무']
-# mixed.sort()  # 문자열 사전순 정렬, 숫자 먼저, 대문자 먼저
-# mixed.sort(reverse=True)
-# print(mixed)
-
-# primes = [2, 19, 3.0, 5, 7, 11]
-# primes_cp = primes
-# print(primes)
-# print(primes_cp)
-# primes[-1] = 'lunch time'
-# print(primes)
-# print(primes_cp)
-
-# a = [1, 2, 3]
-# b = a.copy()
-# c = list(a)
-# d = a[:]
-# a[2] = 'sw'  # immutable
-# print(a, b, c, d)
-
-# a = [1, 2, [5, 9]]
-# b = a.copy()
-# c = list(a)
-# d = a[:]
-# a[2][1] = 7  # mutable, b,c,d affect
-# print(a, b, c, d)
-
-# import copy
-# a = [1, 2, [5, 9]]
-# b = copy.deepcopy(a)
-# a[2][1] = 7  # mutable, deepcopy
-# print(a, b)
-
-
-# list comprehension
-# number_list = list(range(1, 6))
-# number_list2 = [num for num in range(1, 6)]
-# number_list3 = [num-1 for num in range(1, 6)]
-# number_list4 = [num for num in range(1, 6) if num % 2 == 1]
-# odd_lists = []
-# for i in range(1, 11):
-#     if i % 2 == 1:
-#         odd_lists.append(i)
-# odd_lists = [i for i in range(1,11) if i % 2 == 1]
-# odd_tuples = (i for i in range(1,11) if i % 2 == 1)  # tuple comprehension은 없음 generator = 메모리 공간 사용x 발생 후 사라짐
-# print(odd_tuples)
+import random
+alcohol_foods = {
+    '맥주': '치킨', '소주': '골뱅이 소면', '위스키': '치즈', '고량주': '짬뽕'
+}
+alcohol_list = list(alcohol_foods)  # 키 값만 추출
+food_list = [food for food in alcohol_foods.values()]  # value 값 추출
+# while True:
+#     alcohol = input(f'술을 선택하세요 1. {alcohol_list[0]} 2. {alcohol_list[1]} 3. {alcohol_list[2]} 4. {alcohol_list[3]} 5. 아무거나: 6. 계산')
+#     if alcohol == '6':
+#         print('다음에 또 오세요!')
+#         break
+#     elif alcohol == '1':
+#         print(f'{alcohol_list[0]}에 어울리는 안주는 {alcohol_foods[alcohol_list[0]]}입니다.')
+#     elif alcohol == '2':
+#         print(f'{alcohol_list[1]}에 어울리는 안주는 {alcohol_foods[alcohol_list[1]]}입니다.')
+#     elif alcohol == '3':
+#         print(f'{alcohol_list[2]}에 어울리는 안주는 {alcohol_foods[alcohol_list[2]]}입니다.')
+#     elif alcohol == '4':
+#         print(f'{alcohol_list[3]}에 어울리는 안주는 {alcohol_foods[alcohol_list[3]]}입니다.')
+#     elif alcohol == '5':
+#         print(f'{alcohol_list[random.randint(0, 3)]}에 어울리는 안주는 {food_list[random.randint(0, 3)]}입니다.')
+#     else:
+#         print('메뉴에서 골라주세요')
 
 
-# 7-4, 7-5, 7-6, 7-7 연습문제
-# things = ['mozzarella', 'cinderella', 'salmonella']
-# things[1] = things[1].title()
-# print(things)
-# things[0] = things[0].upper()
-# print(things)
-# print(f'Delete {things.pop()}')
-# print(things)
-# for things in things:
-#     print(things.title())
+# for i in range(len(food_list)):
+#     print(food_list[i])
+# for food in food_list:   # more pythonic code
+#     print(food)
+# for food in enumerate(food_list):  # tuple 형태로 인덱스와 함께 return
+#     print(food)
 
 
+# first = {'a': 'agony', 'b': 'bliss'}
+# second = {'b': 'bagels', 'c': 'candy'}
+# print({**first, **second})
+# third = {'d': 'donuts'}
+# print({**first, **second, **third})
 
 
