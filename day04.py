@@ -129,3 +129,4 @@ title = ['Creature of Habit', 'Crewel Fate']
 plot = ['A nun turns into a monster', 'A haunted yarn shop']
 movies = {x: y for x, y in zip(title, plot)}
 print(movies)
+
