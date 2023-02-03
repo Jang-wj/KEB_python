@@ -16,13 +16,15 @@ def delete_data(idx):
         print("데이터를 삭제할 범위를 벗어났습니다.")
         return
 
-    pokemons[idx] = None
+    for _ in range(len(pokemons) - idx):
+        pokemons.pop()
+    # for i in range(idx + 1, len(pokemons)):
+    #     pokemons[i] = None
+    #
+    # for i in range(idx, len(pokemons)):
+    #     pokemons.pop()
 
-    for i in range(idx+1, len(pokemons)):
-        pokemons[i-1] = pokemons[i]
-        pokemons[i] = None
-
-    del pokemons[len(pokemons)-1]
+    # del pokemons[idx:]
 
 
 if __name__ == "__main__":
@@ -32,5 +34,5 @@ if __name__ == "__main__":
     print(pokemons)
     insert_data(6, '거북왕')
     print(pokemons)
-    delete_data(3)
+    delete_data(1)
     print(pokemons)
