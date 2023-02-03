@@ -48,6 +48,12 @@ px = [7, -4, 5]
 
 
 if __name__ == "__main__":
+    t = int(input("차수 입력"))
+    p = int(input("계수 입력"))
+    tx.append(t)
+    tx.sort(reverse=True)
+    px.insert(tx.index(t), p)
+
     pStr = printPoly(tx, px)
     print(pStr)
 
