@@ -1,6 +1,3 @@
-pokemons = ["피카츄", "라이츄", '파이리', '꼬부기', '이상해']
-
-
 def insert_data(idx, pokemon):
     if idx < 0 or idx > len(pokemons):
         print("데이터를 삽입할 범위를 벗어났습니다.")
@@ -14,8 +11,26 @@ def insert_data(idx, pokemon):
 
     pokemons[idx] = pokemon  # 지정한 위치에 친구 추가
 
+def delete_data(idx):
+    if idx < 0 or idx > len(pokemons):
+        print("데이터를 삭제할 범위를 벗어났습니다.")
+        return
 
-insert_data(2, '거북왕')
-print(pokemons)
-insert_data(6, '버터풀')
-print(pokemons)
+    pokemons[idx] = None
+
+    for i in range(idx+1, len(pokemons)):
+        pokemons[i-1] = pokemons[i]
+        pokemons[i] = None
+
+    del pokemons[len(pokemons)-1]
+
+
+if __name__ == "__main__":
+    pokemons = ["피카츄", "라이츄", "꼬부기", "파이리", "이상해"]
+    print(pokemons)
+    insert_data(3, '어니부기')
+    print(pokemons)
+    insert_data(6, '거북왕')
+    print(pokemons)
+    delete_data(3)
+    print(pokemons)
