@@ -1,13 +1,14 @@
-def printPoly(px):
+def printPoly(tx, px):
     """
     다항식을 포맷에 맞게 출력
+    :param tx: 차수를 원소로 가지고 있는 list
     :param px: 계수를 원소로 가지고 있는 list
     :return: 다항식 문자열
     """
-    term = len(px) - 1  # 최고차항 숫자 = 배열길이-1
     poly_str = "P(x) = "
 
     for i in range(len(px)):
+        term = tx[i]  # 차수
         coef = px[i]  # 계수
 
         if coef > 0 and i > 0:
@@ -24,34 +25,35 @@ def printPoly(px):
     return poly_str
 
 
-def calcPoly(x_val, px):
+def calcPoly(tx, px):
     """
     다항식을 계산
-    :param x_val: x 값 integer
+    :param tx: 차수를 원소로 가지고 있는 list
     :param px: 계수를 원소로 가지고 있는 list
     :return: 다항식 계산 결과 값 integer
     """
     ret_value = 0
-    term = len(px) - 1  # 최고차항 숫자 = 배열길이-1
 
     for i in range(len(px)):
+        term = tx[i]
         coef = px[i]  # 계수
-        ret_value += coef * xValue ** term
+        ret_value += coef * x_value ** term
         term -= 1
 
     return ret_value
 
 
-px = [3, -4, 0, 6]  # = 3x^3 -4x^2 +0x^1 +6x^0
+tx = [300, 20, 0]
+px = [7, -4, 5]
 
 
 if __name__ == "__main__":
-    pStr = printPoly(px)
+    pStr = printPoly(tx, px)
     print(pStr)
 
-    xValue = int(input("X 값-->"))
+    x_value = int(input("X 값-->"))
 
-    pxValue = calcPoly(xValue, px)
-    print(pxValue)
+    px_value = calcPoly(tx, px)
+    print(px_value)
 
 
