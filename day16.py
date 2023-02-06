@@ -19,38 +19,30 @@ def printNodes(start):
     print()
 
 
-def countOddEven():
-    global memory, head, current, pre
+def count_plus_minus():
+    global head, current
 
-    odd, even = 0, 0
-
-    # SRP 위배 solid 5원칙
-    # if head == None:
-    #     return False
+    plus, minus, zero = 0, 0, 0
 
     current = head
     while True:
-        if current.data % 2 == 0:
-            even += 1
+        if current.data > 0:
+            plus += 1
+        elif current.data < 0:
+            minus += 1
         else:
-            odd += 1
+            zero += 1
         if current.link == head:
             break
         current = current.link
 
-    return odd, even
+    return plus, minus, zero
 
 
-def makeMinusNumber(odd, even):
-    if odd > even:
-        reminder = 1
-    else:
-        reminder = 0
-
+def makeMinusNumber():
     current = head
     while True:
-        if current.data % 2 == reminder:
-            current.data *= -1
+        current.data *= -1
         if current.link == head:
             break
         current = current.link
@@ -65,7 +57,7 @@ if __name__ == "__main__":
 
     dataArray = []
     for _ in range(7):
-        dataArray.append(random.randint(1, 100))
+        dataArray.append(random.randint(-100, 100))
 
     node = Node()
     node.data = dataArray[0]
@@ -82,9 +74,8 @@ if __name__ == "__main__":
         memory.append(node)
 
     printNodes(head)
+    count = count_plus_minus()
+    print(f"양수 = {count[0]} 음수 = {count[1]} 0 = {count[2]}")
+    makeMinusNumber()
 
-    oddCount, evenCount = countOddEven()
-    print('홀수 -->', oddCount, '\t', '짝수 -->', evenCount)
-
-    makeMinusNumber(oddCount, evenCount)
     printNodes(head)
