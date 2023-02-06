@@ -1,4 +1,6 @@
-# 응용예제 4-1
+# 응용예제 4-2
+
+import random
 
 class Node():
     def __init__(self):
@@ -17,17 +19,17 @@ def print_nodes(start):
     print()
 
 
-def make_linked_list(data):
+def make_lotto_list(num):
     global linked_list, current, head, pre
 
     node = Node()
-    node.data = data
+    node.data = num
     linked_list.append(node)
     if head == None:
         head = node
         return
 
-    if head.data[1] > data[1]:
+    if head.data > num:
         node.link = head
         head = node
         return
@@ -38,23 +40,42 @@ def make_linked_list(data):
             break
         pre = current
         current = current.link
-        if current.data[1] > data[1]:
+        if current.data > num:
             pre.link = node
             node.link = current
             return
 
     current.link = node
 
+def find_lotto(num):
+    global linked_list, head, current, pre
+
+    if head == None:
+        return False
+    current = head
+    if current.data == num:
+        return True
+    while True:
+        if current.link == None:
+            break
+        current = current.link
+        if current.data == num:
+            return True
+    return False
+
+
 
 linked_list = []
 head, current, pre = None, None, None
 
 if __name__ == "__main__":
-    while True:
-        name = input("name :")
-        if name == '' or name == None:
-            break
-        email = input("email :")
-        make_linked_list([name, email])
-        print_nodes(head)
+    cnt = 0
+    while cnt <= 6:
+        num = random.randint(1, 45)
+        if find_lotto(num):
+            continue
+        make_lotto_list(num)
+        cnt += 1
+
+    print_nodes(head)
 
