@@ -1,81 +1,30 @@
-import random
+"""
+연습문제
+4-1
+ 1. 선형 리스트
+ 2. 연결 리스트
 
+4-2
+ 답: 3
 
-## 클래스와 함수 선언 부분 ##
-class Node():
-    def __init__(self):
-        self.data = None
-        self.link = None
+4-3
+  a = 데이터
+  b = 링크
 
+4-4
+ 답: 2
 
-def printNodes(start):
-    current = start
-    if current.link == None:
-        return
-    print(current.data, end=' ')
-    while current.link != start:
-        current = current.link
-        print(current.data, end=' ')
-    print()
+4-5
+ 답: b - a - c
 
+4-6
+ 답: 4
 
-def count_plus_minus():
-    global head, current
+4-7
+ 1. node.data
+ 2. node.link
+ 3. node
 
-    plus, minus, zero = 0, 0, 0
-
-    current = head
-    while True:
-        if current.data > 0:
-            plus += 1
-        elif current.data < 0:
-            minus += 1
-        else:
-            zero += 1
-        if current.link == head:
-            break
-        current = current.link
-
-    return plus, minus, zero
-
-
-def makeMinusNumber():
-    current = head
-    while True:
-        current.data *= -1
-        if current.link == head:
-            break
-        current = current.link
-
-
-## 전역 변수 선언 부분 ##
-memory = []
-head, current, pre = None, None, None
-
-## 메인 코드 부분 ##
-if __name__ == "__main__":
-
-    dataArray = []
-    for _ in range(7):
-        dataArray.append(random.randint(-100, 100))
-
-    node = Node()
-    node.data = dataArray[0]
-    head = node
-    node.link = head
-    memory.append(node)
-
-    for data in dataArray[1:]:
-        pre = node
-        node = Node()
-        node.data = data
-        pre.link = node
-        node.link = head
-        memory.append(node)
-
-    printNodes(head)
-    count = count_plus_minus()
-    print(f"양수 = {count[0]} 음수 = {count[1]} 0 = {count[2]}")
-    makeMinusNumber()
-
-    printNodes(head)
+4-8
+ 답: 2
+"""
