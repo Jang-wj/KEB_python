@@ -1,6 +1,8 @@
+import random
+
 def is_que_full():
     global size, queue, front, rear
-    if rear == size - 1:
+    if front == (rear + 1) % size:
         return True
     else:
         return False
@@ -19,7 +21,7 @@ def enqueue(data):
     if is_que_full():
         print("큐가 꽉 찼습니다.")
         return
-    rear += 1
+    rear = (rear + 1) % size
     queue[rear] = data
 
 
@@ -28,16 +30,9 @@ def dequeue():
     if is_que_empty():
         print("큐가 비었습니다.")
         return None
-    front += 1
+    front = (front + 1) % size
     data = queue[front]
     queue[front] = None
-
-    for i in range(front + 1, rear + 1):  # 모든 사람을 한칸씩 앞으로 당긴다.
-        queue[i - 1] = queue[i]
-        queue[i] = None
-    front = -1
-    rear -= 1
-
     return data
 
 
@@ -46,21 +41,26 @@ def peek():
     if is_que_empty():
         print("큐가 비었습니다.")
         return None
-    return queue[front + 1]
+    return queue[(front + 1) % size]
+
+
+def cal_time():
+    global front, rear, size, queue
+    time = 0
+    for i in range(front+1, rear+1):
+        time += queue[i][1]
+    return time
 
 
 size = 5
 queue = [None for i in range(size)]
-front = rear = -1
-mans = ['정국', '뷔', '지민', '진', '슈가']
+front = rear = 0
+calls = [('사용', 9), ('환불', 4), ('기타', 1)]
 
 if __name__ == "__main__":
-    for i in mans:
-        enqueue(i)
-    print("대기 줄 상태 : ", queue)
+    for i in range(size-1):
+        enqueue(random.choice(calls))
+        print(f'현재 대기 콜 : {queue}')
+        print(f'예상 대기 시간 {cal_time()}')
 
-    for i in range(size):
-        print(dequeue(), '님 식당에 들어감')
-        print("대기 줄 상태 : ", queue)
 
-    print("식당 영업 종료!")
