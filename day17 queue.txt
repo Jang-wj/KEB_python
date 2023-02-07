@@ -1,0 +1,16 @@
+연습문제
+7-1, 4
+
+7-2, rear, front, enqueue, dequeue
+
+7-3,
+ 1. rear += 1
+ 2. front += 1
+
+7-4, 2 rear == SIZE-1
+
+7-5, 2 front == rear
+
+7-6,
+ 1. return None
+ 2. return queue[front+1]

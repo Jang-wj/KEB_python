@@ -1,66 +1,53 @@
 import random
 
-def is_que_full():
-    global size, queue, front, rear
-    if front == (rear + 1) % size:
-        return True
-    else:
-        return False
+
+class TreeNode:
+    def __init__(self):
+        self.left = None
+        self.data = None
+        self.right = None
 
 
-def is_que_empty():
-    global size, queue, front, rear
-    if front == rear:
-        return True
-    else:
-        return False
-
-
-def enqueue(data):
-    global size, queue, front, rear
-    if is_que_full():
-        print("큐가 꽉 찼습니다.")
+def preorder(node):
+    if not node:
         return
-    rear = (rear + 1) % size
-    queue[rear] = data
+    print(node.data, end=' ')
+    preorder(node.left)
+    preorder(node.right)
 
 
-def dequeue():
-    global size, queue, front, rear
-    if is_que_empty():
-        print("큐가 비었습니다.")
-        return None
-    front = (front + 1) % size
-    data = queue[front]
-    queue[front] = None
-    return data
+memory = []
+root = None
+data_array = ['바나나맛우유', '레쓰비캔커피', '츄파춥스', '도시락', '삼다수', '코카콜라', '삼각김밥']
+sell_array = [random.choice(data_array) for i in range(20)]
 
+print('오늘 판매된 물건(중복O) -->', sell_array)
 
-def peek():
-    global size, queue, front, rear
-    if is_que_empty():
-        print("큐가 비었습니다.")
-        return None
-    return queue[(front + 1) % size]
+node = TreeNode()
+node.data = sell_array[0]
+root = node
+memory.append(node)
 
+for name in sell_array[1:]:
+    node = TreeNode()
+    node.data = name
+    current = root
+    while True:
+        if name == current.data:
+            break
+        if name < current.data:
+            if not current.left:
+                current.left = node
+                memory.append(node)
+                break
+            current = current.left
+        else:
+            if not current.right:
+                current.right = node
+                memory.append(node)
+                break
+            current = current.right
 
-def cal_time():
-    global front, rear, size, queue
-    time = 0
-    for i in range(front+1, rear+1):
-        time += queue[i][1]
-    return time
-
-
-size = 5
-queue = [None for i in range(size)]
-front = rear = 0
-calls = [('사용', 9), ('환불', 4), ('기타', 1)]
-
-if __name__ == "__main__":
-    for i in range(size-1):
-        enqueue(random.choice(calls))
-        print(f'현재 대기 콜 : {queue}')
-        print(f'예상 대기 시간 {cal_time()}')
-
-
+print("이진 탐색 트리 구성 완료!")
+print('오늘 판매된 종류(중복X) : ', end=' ')
+preorder(root)
