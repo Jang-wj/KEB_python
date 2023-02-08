@@ -1,61 +1,50 @@
-
 class Graph:
     def __init__(self, size):
-        self.SIZE = size
+        self.size = size
         self.graph = [[0 for _ in range(size)] for _ in range(size)]
 
 
-g1 = None
-stack = []
-stack_visited_ary = []
-
-g1 = Graph(9)
-g1.graph[0][1] = 1
-g1.graph[0][2] = 1
-g1.graph[0][4] = 1
-
-g1.graph[1][0] = 1
-g1.graph[1][2] = 1
-g1.graph[1][3] = 1
-
-g1.graph[2][0] = 1
-g1.graph[2][1] = 1
-g1.graph[2][3] = 1
-g1.graph[2][4] = 1
-
-g1.graph[3][1] = 1
-g1.graph[3][2] = 1
-
-g1.graph[4][0] = 1
-g1.graph[4][2] = 1
-g1.graph[4][7] = 1
-g1.graph[4][6] = 1
-
-g1.graph[5][2] = 1
-
-g1.graph[6][4] = 1
-g1.graph[6][8] = 1
-
-g1.graph[7][4] = 1
-g1.graph[7][8] = 1
-
-g1.graph[8][7] = 1
-g1.graph[8][6] = 1
-
-for row in range(9):
-    for col in range(9):
-        print(g1.graph[row][col], end=' ')
+def print_graph(g):
+    print('	', end='')
+    for v in range(g.size):
+        print("%9s" % stores[v][0], end=' ')
+    print()
+    for row in range(g.size):
+        print("%9s" % stores[row][0], end=' ')
+        for col in range(g.size):
+            print("%8d" % g.graph[row][col], end=' ')
+        print()
     print()
 
+
+g = None
+stores = [['GS25', 30], ['CU', 60], ['Seven11', 10], ['MiniStop', 90], ['Emart24', 40]]
+GS25, CU, Seven11, MiniStop, Emart24 = 0, 1, 2, 3, 4
+
+g_size = len(stores)
+g = Graph(g_size)
+g.graph[GS25][CU] = 1; g.graph[GS25][Seven11] = 1
+g.graph[CU][GS25] = 1; g.graph[CU][Seven11] = 1; g.graph[CU][MiniStop] = 1
+g.graph[Seven11][GS25] = 1; g.graph[Seven11][CU] = 1; g.graph[Seven11][MiniStop] = 1
+g.graph[MiniStop][Seven11] = 1; g.graph[MiniStop][CU] = 1; g.graph[MiniStop][Emart24] = 1
+g.graph[Emart24][MiniStop] = 1
+
+print_graph(g)
+
+stack = []
+visited = []
+
 current = 0
+max_store = current
+max_count = stores[current][1]
 stack.append(current)
-stack_visited_ary.append(current)
+visited.append(current)
 
 while len(stack) != 0:
     next = None
-    for vertex in range(9):
-        if g1.graph[current][vertex] == 1:
-            if vertex in stack_visited_ary:
+    for vertex in range(g_size):
+        if g.graph[current][vertex] == 1:
+            if vertex in visited:
                 pass
             else:
                 next = vertex
@@ -64,58 +53,11 @@ while len(stack) != 0:
     if next != None:
         current = next
         stack.append(current)
-        stack_visited_ary.append(current)
+        visited.append(current)
+        if stores[current][1] > max_count:
+            max_count = stores[current][1]
+            max_store = current
     else:
         current = stack.pop()
 
-print('방문 순서 =', end='')
-for i in stack_visited_ary:
-    print(chr(ord('A') + i), end='   ')
-
-
-# 너비우선탐색 큐 사용 fifo
-
-from collections import deque
-
-g2 = None
-queue = deque([])
-que_visited_ary = []
-
-g2 = Graph(5)
-g2.graph[0][2] = 1; g2.graph[0][3] = 1
-g2.graph[1][2] = 1
-g2.graph[2][0] = 1; g2.graph[2][1] = 1; g2.graph[2][3] = 1
-g2.graph[3][0] = 1; g2.graph[3][2] = 1
-g2.graph[4][0] = 1
-
-print()
-for row in range(5):
-    for col in range(5):
-        print(g2.graph[row][col], end=' ')
-    print()
-
-current = 0
-queue.append(current)
-que_visited_ary.append(current)
-
-while len(queue) != 0:
-    next = None
-    for vertex in range(4):
-        if g2.graph[current][vertex] == 1:
-            if vertex in que_visited_ary:
-                pass
-            else:
-                next = vertex
-                break
-
-    if next != None:
-        current = next
-        queue.append(current)
-        que_visited_ary.append(current)
-    else:
-        # current = queue.pop(0)  # overhead
-        current = queue.popleft()
-
-print('방문 순서 =', end='')
-for i in que_visited_ary:
-    print(chr(ord('A') + i), end='   ')
+print(f'max_store(count) = {stores[max_store][0]} ({stores[max_store][1]})')
