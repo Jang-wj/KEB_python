@@ -1,87 +1,59 @@
-memos = [None for _ in range(100)]  # 전역 리스트
-memos[0], memos[1] = 0, 1
+def add_number(n):
+    if n<=10:
+        return 10
+    return n + add_number(n-1)
 
 
-def fibo_memo_recu(n):
-    """
-    재귀함수에 Memoization(DP)을 사용한 피보나치 수열 처리 함수
-    :param n:
-    :return:
-    """
-    global memos, count_memo_recu
-    count_memo_recu = count_memo_recu + 1
+print(add_number(100))
 
+
+def factorial(n):
     if n <= 1:
-        return memos[n]
-
-    if memos[n] is not None:  # 전역 메모리 memos에 이전에 계산한 결과 값이 존재하면
-        return memos[n]
-
-    memos[n] = fibo_memo_recu(n-2) + fibo_memo_recu(n-1)  # 처음 방문하는 n이면
-    return memos[n]
+        return 1
+    return n * factorial(n-1)
 
 
-def fibo_memo(n):
+print(factorial(5))
+
+
+def print_star(n):
+    if n>=1:
+        print('*' * n)
+        print_star(n-1)
+
+
+print_star(5)
+
+
+import random
+
+
+def ary_sum(arr, n):
     """
-    Memoization(DP)을 사용한 피보나치 수열 처리 함수
-    :param n:
-    :return:
+    배열 안에 들어있는 값의 합을 재귀로 구하는 함수
+    :param arr: 합 할 배열
+    :param n: 배열의 인덱스
+    :return: 배열의 합
     """
-    global count_memoization
-    count_memoization = count_memoization + 1
-    memo = [0, 1]
-    if n <= 1:
-        return memo[n]
+    if n <= 0:
+        return arr[0]
+    return arr[n] + ary_sum(arr, n-1)
+
+
+ary = [random.randint(1, 1000) for _ in range(random.randint(10, 20))]
+print(ary)
+print(f'배열 합계 = {ary_sum(ary, len(ary)-1)}')
+
+
+def fibo(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
     else:
-        for i in range(2, n+1):
-            memo.append(memo[i-1] + memo[i-2])
-        return memo[n]
+        return fibo(n-1) + fibo(n-2)
 
 
-def fibo_recu(n):
-    global count_recursion
-    count_recursion = count_recursion + 1
-
-    """
-    재귀 함수를 사용한 피보나치 수열 처리 함수
-    :param n:
-    :return:
-    """
-    if n <= 1:
-        return n
-    else:
-        return fibo_recu(n-1) + fibo_recu(n-2)
-
-
-def fibo_iter(n):
-    """
-    반복문을 사용한 피보나치 수열 처리 함수
-    :param n:
-    :return:
-    """
-    r = list()
-    p1, p2 = 1, 1
-    for _ in range(n):
-        r.append(p1)
-        p1, p2 = p2, p1 + p2
-    return r[-1]
-
-count_recursion = 0
-count_memoization = 0
-count_memo_recu = 0
-
-print('피보나치 수')
-for i in range(2, 30):
-    print(f'{i} : {fibo_memo(i)}')  # memoization
-
-# for i in range(2, 40):
-#     print(f'{i} : {fibo_iter(i)}')  # repetition
-
-for i in range(2, 30):
-    print(f'{i} : {fibo_recu(i)}')  # recursion
-
-
-for i in range(2, 30):
-    print(f'{i} : {fibo_memo_recu(i)}')  # memo+recu
-
-print(f'재귀 : {count_recursion}, 메모 : {count_memoization}, 재귀메모 : {count_memo_recu}')
+print('피보나치 수 = 0 1', end=' ')
+for i in range(2, 10):
+    print(fibo(i), end=' ')
