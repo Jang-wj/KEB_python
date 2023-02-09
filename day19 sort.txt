@@ -1,0 +1,21 @@
+연습문제
+11-1, 4
+11-2, 2
+11-3, 4
+11-4,
+ 1. minIdx = 0
+ 2. 0, len(ary)
+ 3. minIdx = i
+11-5, 2
+11-6, 3
+11-7, 4
+11-8,
+ 1. findIdx = -1
+ 2. return len(ary)
+ 3. return findIdx
+
+12-4, 4
+12-5, 4
+12,7,
+ 1. art[n//2]
+ 2. quickSort(leftAry) + [pivot] + quickSort(rightAry)
